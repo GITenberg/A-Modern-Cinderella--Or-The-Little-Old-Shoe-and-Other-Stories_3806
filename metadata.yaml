@@ -1,0 +1,35 @@
+_repo: A-Modern-Cinderella--Or-The-Little-Old-Shoe-and-Other-Stories_3806
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Alcott, Louisa May
+    aliases:
+    - Barnard, A. M.
+    - Alcott, L. M. (Louisa May)
+    - Alcott, Louisa M. (Louisa May)
+    birthdate: 1832
+    deathdate: 1888
+    gutenberg_agent_id: '102'
+    url: http://www.gutenberg.org/2009/agents/102
+    wikipedia: http://en.wikipedia.org/wiki/Louisa_May_Alcott
+description: Louisa May Alcott's lively and heartwarming stories are favorites with
+  young readers everywhere. Presents four stories by the well-known author of "Little
+  Women".
+gutenberg_bookshelf: Children's Literature
+gutenberg_issued: '2003-03-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '3806'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Short stories'
+- !lcsh 'Fiction'
+- !lcc 'PS'
+- GITenberg
+tableOfContents: A modern Cinderella; or, the little old shoe -- Derby's debut --
+  The brothers -- Nelly's hospital.
+title: A Modern Cinderella; Or, The Little Old Shoe, and Other Stories
+url: http://www.gutenberg.org/ebooks/3806
