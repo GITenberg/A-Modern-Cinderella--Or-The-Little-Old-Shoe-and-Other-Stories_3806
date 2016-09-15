@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: YaSkziypbm+40+opao+f8y4xar9J+6Mhk+tU4Bi2z5QbziKEmgSczenh2kt8R9iPalhtjGmrHEDcNMeQBFVfpCsJ4B1KODr0N3l6igMvwGydZhowXlTUuMd1enL4SvfT9wmoRnnvMWyvG0IcSdjQH7EiByBmB89eHMsHdNCYZsiTidPfCPCGhSyXB0F+sbcGQ2TbtEziPIjDgOxFTAhRQ7tHcfmKBeEPwsH3HwF3FhL3Cu/qIdmY87f3iuD/leZ2w3vl07CDAiM2DgzyWygDB0XIolN2JOCVH+Og8KPBwjfkXPXOAR+UbhQVdZCcI/djOTKODs0p2PnXTG/qkcZFpVX9Su8ThON6o4ddCW1HXrcgsInuvdcDk6rNQOzvMZJUSNaFrslWXFqdqRgQpTCo6zjDkZgmN4ZM6otcpWtdVIR+lnIbuzhM3kliJKFhpD4WlOPzPJ7PgnJpahAOiV3YNue+huLB9UQq7XMflx4EI+BO+hQ9AHi+QPNZLvgVZc6+XGsBGVRTVSRyyfsCYsdvAa6/jFdNiLypAyAy7S2XPG2ejtWR1bTuyxm6U3gqzWAAbt9rioGsEStNeHTF5BKxZwSXeITVutsXUaD4tmW/LlQvQo6Bzz6ZFlmpcn0qDfMw0q4g7IZy24+ZH9CJ6hnTlAj/GoCgVYgCX6m2e5RYzBU=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/A-Modern-Cinderella--Or-The-Little-Old-Shoe-and-Other-Stories_3806
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
